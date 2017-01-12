@@ -326,7 +326,6 @@ function performAPICalls() {
         $.ajax({url: queryURLM , method: "GET"}).done(function(response) {
 
             var jsonObj = response;
-            console.log(jsonObj);
 
             //Appends appropriate parsed movie info
             for (i = 0; i < jsonObj.length; i++) {
@@ -473,13 +472,14 @@ function performAPICalls() {
     //Eventful API Call
     if (eventful) { 
         $("#concertsArea").append("<br><hr class='light'><br>Concerts functionality under construction...<br>On demo day for the group project, we displayed 10 random local concerts.");
-        // $.ajax({ url: queryURLC, method: "GET" }).done(function(response) {
-
-        //     for (i = 0 ; i < ((response.Events.length + 10) - (response.Events.length) ) ; i ++ ) {
-        //         //console.log("Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
-        //         $("#concertsArea").append("<br><br>Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
-        //     }
-        // });
+        console.log("test");
+        $.ajax({ url: queryURLC, method: "GET" }).done(function(response) {
+            console.log("test");
+            for (var i = 0 ; i < 10; i++) {
+                console.log("Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
+                $("#concertsArea").append("<br><br>Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
+            }
+        });
     }
 
     //Sports API Call
