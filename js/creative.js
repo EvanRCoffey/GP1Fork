@@ -317,7 +317,7 @@ function performAPICalls() {
     if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
     console.log("Today is " + today);
 
-    var queryURLC = "http://api.jambase.com/events?zipCode=" + zipCode + "&radius=" + radius + "&page=0&api_key=rm4t3ad3hchkapjq28uv75u6";
+    var queryURLC = "https://api.jambase.com/events?zipCode=" + zipCode + "&radius=" + radius + "&page=0&api_key=rm4t3ad3hchkapjq28uv75u6";
     var queryURLM = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+today+"&zip=" + zipCode + "&radius=" + radius + "&api_key=9spw93n6wf2ug5mtd6pzphcm";
 
     //onConnect API Call
@@ -471,7 +471,9 @@ function performAPICalls() {
 
     //Eventful API Call
     if (eventful) { 
+        //This line is working...
         $("#concertsArea").append("<br><hr class='light'><br>Concerts functionality under construction...<br>On demo day for the group project, we displayed 10 random local concerts.");
+        //...but NONE of these lines are
         console.log("test");
         $.ajax({ url: queryURLC, method: "GET" }).done(function(response) {
             console.log("test");
