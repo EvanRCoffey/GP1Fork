@@ -1,0 +1,7 @@
+4:49 PM 1/12/2017
+
+Get concerts functionality to work on heroku (keep getting 504 error, even after getting a 2nd api key)
+
+Rewrite the entire sports API call
+-To start, just take the parameters you have right now
+-Once that works, consider adding more parameters

@@ -316,8 +316,9 @@ function performAPICalls() {
     var yyyy = today.getFullYear();
     if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
     console.log("Today is " + today);
-
-    var queryURLC = "https://api.jambase.com/events?zipCode=" + zipCode + "&radius=" + radius + "&page=0&api_key=rm4t3ad3hchkapjq28uv75u6";
+    
+    var queryURLC = "http://api.jambase.com/events?zipCode=" + zipCode + "&radius=" + radius + "&startDate=" + today + "T08%3A00%3A00&page=0&api_key=rm4t3ad3hchkapjq28uv75u6"; //original API key - 3nrh4kum33dwxs4hmzh682kj
+    console.log("queryURLC = " + queryURLC);
     var queryURLM = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+today+"&zip=" + zipCode + "&radius=" + radius + "&api_key=9spw93n6wf2ug5mtd6pzphcm";
 
     //onConnect API Call
@@ -471,9 +472,7 @@ function performAPICalls() {
 
     //Eventful API Call
     if (eventful) { 
-        //This line is working...
-        $("#concertsArea").append("<br><hr class='light'><br>Concerts functionality under construction...<br>On demo day for the group project, we displayed 10 random local concerts.");
-        //...but NONE of these lines are
+        // $("#concertsArea").append("<br><hr class='light'><br>Concerts functionality under construction...<br>On demo day for the group project, we displayed 10 random local concerts.");
         console.log("test");
         $.ajax({ url: queryURLC, method: "GET" }).done(function(response) {
             console.log("test");
@@ -487,29 +486,29 @@ function performAPICalls() {
     //Sports API Call
     if (sportsAPI) {
         $("#sportsArea").append("<br><hr class='light'><br>Sports functionality under construction...<br>On demo day for the group project, we displayed 1 event per sport selected.");
-        // var nottoday = new Date();
-        // var dd = nottoday.getDate()+1;
-        // var mm = nottoday.getMonth()+1; //January is 0!
-        // var Fdd = dd + 5
-        // var yyyy = nottoday.getFullYear();
-        // if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} nottoday = yyyy+'-'+mm+'-'+dd;
-        // for (var i = 0 ; i < sports.length ; i++){
-        //     var correctSport = sports[i][1];
-        //     if (sports[i][0]) {
-        //         var queryURLS = "https://app.ticketmaster.com/discovery/v2/events.json?endDateTime"+nottoday +"&classificationName="+ correctSport +"&dmaId=222&apikey=K1k9u4pDAt3XxPN91bxupADV2fxpDDGA"
-        //         $.ajax({url: queryURLS, method: "GET"}).done(function(response) {
-        //             if (response.page.totalPages === 0){
-        //                 $("#sportsArea").append("<br><br>No showtimes available for that sport");
-        //             }
-        //             else {
-        //                 $("#sportsArea").append("<br><br>" + response._embedded.events[0].name);
-        //             }   
-        //         });    
-        //     }
-        //     else {
-        //         $("#sportsArea").append("<br><br>Not displaying results for " + correctSport);
-        //     }
-        // }
+        var nottoday = new Date();
+        var dd = nottoday.getDate()+1;
+        var mm = nottoday.getMonth()+1; //January is 0!
+        var Fdd = dd + 5
+        var yyyy = nottoday.getFullYear();
+        if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} nottoday = yyyy+'-'+mm+'-'+dd;
+        for (var i = 0 ; i < sports.length ; i++){
+            var correctSport = sports[i][1];
+            if (sports[i][0]) {
+                var queryURLS = "https://app.ticketmaster.com/discovery/v2/events.json?endDateTime"+nottoday +"&classificationName="+ correctSport +"&dmaId=222&apikey=K1k9u4pDAt3XxPN91bxupADV2fxpDDGA"
+                $.ajax({url: queryURLS, method: "GET"}).done(function(response) {
+                    if (response.page.totalPages === 0){
+                        $("#sportsArea").append("<br><br>No showtimes available for that sport");
+                    }
+                    else {
+                        $("#sportsArea").append("<br><br>" + response._embedded.events[0].name);
+                    }   
+                });    
+            }
+            else {
+                $("#sportsArea").append("<br><br>Not displaying results for " + correctSport);
+            }
+        }
     }
 }
 
