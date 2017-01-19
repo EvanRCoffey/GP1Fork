@@ -94,65 +94,63 @@ $(document).on("click", '#zip', function() {
     }
 })
 
-//Load travel radius from slide bar -> Interests
+//Load travel radius from slide bar -> Sounds Good
 $(document).on("click", '.loadRadiusSlidebar', function() {
     radius = $(".radius").val();
     console.log("Willing to travel " + radius + " miles");
     //Display the next question
-    $("#questionArea").html('Which of these can we help you find today?<br><br><input type="checkbox" name="interest1" id="moviesBox" value="Movies" checked>Movies<br><input type="checkbox" name="interest2" id="concertsBox" value="Concerts" checked>Concerts<br><input type="checkbox" name="interest3" id="sportsBox" value="Sports" checked>Sports<br><br><button class="btn btn-danger interests">Submit</button><br><br>')
+    $("#questionArea").html("Okay, so, here's the thing.  The code we wrote for this site kinda depended on certain APIs working, and, unfortunately, in the end, we could only get one to return us the data we needed.  Thus, today, we will be helping you (and possibly a friend!) find a movie to watch.<br><br><button class='btn btn-danger soundsGood'>Sounds good</button>")
+    // $("#questionArea").html('Which of these can we help you find today?<br><br><input type="checkbox" name="interest1" id="moviesBox" value="Movies" checked>Movies<br><input type="checkbox" name="interest2" id="concertsBox" value="Concerts" checked>Concerts<br><input type="checkbox" name="interest3" id="sportsBox" value="Sports" checked>Sports<br><br><button class="btn btn-danger interests">Submit</button><br><br>')
 })
 
-//Sets noTimeConstraints to true -> Interests
-$(document).on("click", '.noTimeConstraints', function() {
-    noTimeConstraints = true;
-    console.log("No time constraints = " + noTimeConstraints);
-    //Display the next question
-    $("#questionArea").html('Which of these can we help you find today?<br><br><input type="checkbox" name="interest1" id="moviesBox" value="Movies" checked>Movies<br><input type="checkbox" name="interest2" id="concertsBox" value="Concerts" checked>Concerts<br><input type="checkbox" name="interest3" id="sportsBox" value="Sports" checked>Sports<br><br><button class="btn btn-danger interests">Submit</button><br><br>')
+$(document).on("click", '.soundsGood', function() {
+    $("#questionArea").html('Okay.  What rating(s) are you okay with?<br><br><input type="checkbox" id="rating1" value="G" checked>G<br><input type="checkbox" id="rating2" value="PG" checked>PG<br><input type="checkbox" id="rating3" value="PG13" checked>PG-13<br><input type="checkbox" id="rating4" value="R" checked>R<br><input type="checkbox" id="rating5" value="NC17" checked>NC-17<br><input type="checkbox" id="rating6" value="Unrated" checked>Unrated<br><br><button class="btn btn-danger ratings">Submit</button><br><br>')
 })
+
 
 //Gets checkbox data for interests -> Sports
-$(document).on("click", '.interests', function() {
-    onConnect = document.getElementById("moviesBox").checked;
-    eventful = document.getElementById("concertsBox").checked;
-    sportsAPI = document.getElementById("sportsBox").checked;
-    interests = [onConnect, eventful, sportsAPI];
-    console.log(interests);
+// $(document).on("click", '.interests', function() {
+//     onConnect = document.getElementById("moviesBox").checked;
+//     eventful = document.getElementById("concertsBox").checked;
+//     sportsAPI = document.getElementById("sportsBox").checked;
+//     interests = [onConnect, eventful, sportsAPI];
+//     console.log(interests);
 
-    if (sportsAPI) {
-        //Display the first sports question
-        $("#questionArea").html('Okay.  What sport(s) are you okay with?<br><br><input type="checkbox" id="baseball" name="sport1" value="Baseball" checked>Baseball<br><input type="checkbox" id="football" name="sport2" value="Football" checked>Football<br><input type="checkbox" id="basketball" name="sport3" value="Basketball" checked>Basketball<br><input type="checkbox" id="soccer" name="sport4" value="Soccer" checked>Soccer<br><input type="checkbox" id="hockey" name="sport5" value="Hockey" checked>Hockey<br><br><button class="btn btn-danger sports">Submit</button><br><br>')
-    }
-    else if(onConnect) {
-        //Display the first movies question
-        $("#questionArea").html('Okay.  What rating(s) are you okay with?<br><br><input type="checkbox" id="rating1" value="G" checked>G<br><input type="checkbox" id="rating2" value="PG" checked>PG<br><input type="checkbox" id="rating3" value="PG13" checked>PG-13<br><input type="checkbox" id="rating4" value="R" checked>R<br><input type="checkbox" id="rating5" value="NC17" checked>NC-17<br><input type="checkbox" id="rating6" value="Unrated" checked>Unrated<br><br><button class="btn btn-danger ratings">Submit</button><br><br>')
-        console.log("No info for sports.");
-    }
-    else {
-        //Multiple users?
-        $("#questionArea").html('One last thing.  Do you want your results now, or would you like to see if your preferences match up with a friend, first?<br><br><button class="btn btn-danger onlyOneUser">Results!  Now!</button><br><br><button class="btn btn-danger anotherUser">Another user</button>')
-        console.log("No info for movies or sports.");
-    }
-})
+//     if (sportsAPI) {
+//         //Display the first sports question
+//         $("#questionArea").html('Okay.  What sport(s) are you okay with?<br><br><input type="checkbox" id="baseball" name="sport1" value="Baseball" checked>Baseball<br><input type="checkbox" id="football" name="sport2" value="Football" checked>Football<br><input type="checkbox" id="basketball" name="sport3" value="Basketball" checked>Basketball<br><input type="checkbox" id="soccer" name="sport4" value="Soccer" checked>Soccer<br><input type="checkbox" id="hockey" name="sport5" value="Hockey" checked>Hockey<br><br><button class="btn btn-danger sports">Submit</button><br><br>')
+//     }
+//     else if(onConnect) {
+//         //Display the first movies question
+//         $("#questionArea").html('Okay.  What rating(s) are you okay with?<br><br><input type="checkbox" id="rating1" value="G" checked>G<br><input type="checkbox" id="rating2" value="PG" checked>PG<br><input type="checkbox" id="rating3" value="PG13" checked>PG-13<br><input type="checkbox" id="rating4" value="R" checked>R<br><input type="checkbox" id="rating5" value="NC17" checked>NC-17<br><input type="checkbox" id="rating6" value="Unrated" checked>Unrated<br><br><button class="btn btn-danger ratings">Submit</button><br><br>')
+//         console.log("No info for sports.");
+//     }
+//     else {
+//         //Multiple users?
+//         $("#questionArea").html('One last thing.  Do you want your results now, or would you like to see if your preferences match up with a friend, first?<br><br><button class="btn btn-danger onlyOneUser">Results!  Now!</button><br><br><button class="btn btn-danger anotherUser">Another user</button>')
+//         console.log("No info for movies or sports.");
+//     }
+// })
 
 //Gets checkbox data for sports -> Ratings/multiple users?
-$(document).on("click", '.sports', function() {
-    sportBaseball[0] = document.getElementById("baseball").checked;
-    sportFootball[0] = document.getElementById("football").checked;
-    sportBasketball[0] = document.getElementById("basketball").checked;
-    sportSoccer[0] = document.getElementById("soccer").checked;
-    sportHockey[0] = document.getElementById("hockey").checked;
-    console.log(sports);
+// $(document).on("click", '.sports', function() {
+//     sportBaseball[0] = document.getElementById("baseball").checked;
+//     sportFootball[0] = document.getElementById("football").checked;
+//     sportBasketball[0] = document.getElementById("basketball").checked;
+//     sportSoccer[0] = document.getElementById("soccer").checked;
+//     sportHockey[0] = document.getElementById("hockey").checked;
+//     console.log(sports);
 
-    //Either move on to movies, or go to multiple users?
-    if(onConnect) {
-        //Display the first movies question
-        $("#questionArea").html('Okay.  Now for movies.  What rating(s) are you okay with?<br><br><input type="checkbox" id="rating1" value="G" checked>G<br><input type="checkbox" id="rating2" value="PG" checked>PG<br><input type="checkbox" id="rating3" value="PG13" checked>PG-13<br><input type="checkbox" id="rating4" value="R" checked>R<br><input type="checkbox" id="rating5" value="NC17" checked>NC-17<br><input type="checkbox" id="rating6" value="Unrated" checked>Unrated<br><br><button class="btn btn-danger ratings">Submit</button><br><br>')
-    }
-    else {
-        //Multiple users?
-        $("#questionArea").html('One last thing.  Do you want your results now, or would you like to see if your preferences match up with a friend, first?<br><br><button class="btn btn-danger onlyOneUser">Results!  Now!</button><br><br><button class="btn btn-danger anotherUser">Another user</button>')
-        console.log("No info for movies.")
-    }})
+//     //Either move on to movies, or go to multiple users?
+//     if(onConnect) {
+//         //Display the first movies question
+//         $("#questionArea").html('Okay.  Now for movies.  What rating(s) are you okay with?<br><br><input type="checkbox" id="rating1" value="G" checked>G<br><input type="checkbox" id="rating2" value="PG" checked>PG<br><input type="checkbox" id="rating3" value="PG13" checked>PG-13<br><input type="checkbox" id="rating4" value="R" checked>R<br><input type="checkbox" id="rating5" value="NC17" checked>NC-17<br><input type="checkbox" id="rating6" value="Unrated" checked>Unrated<br><br><button class="btn btn-danger ratings">Submit</button><br><br>')
+//     }
+//     else {
+//         //Multiple users?
+//         $("#questionArea").html('One last thing.  Do you want your results now, or would you like to see if your preferences match up with a friend, first?<br><br><button class="btn btn-danger onlyOneUser">Results!  Now!</button><br><br><button class="btn btn-danger anotherUser">Another user</button>')
+//         console.log("No info for movies.")
+//     }})
 
 //Ratings -> Runtime
 $(document).on("click", '.ratings', function() {
@@ -301,7 +299,7 @@ $(document).on("click", '.anotherUser', function() {
     dummymaxLength = maxLength;
 
     //Back to the beginning
-    $("#questionArea").html('Alright, User #2.  Which of these can we help YOU find today?<br><br><input type="checkbox" name="interest1" id="moviesBox" value="Movies" checked>Movies<br><input type="checkbox" name="interest2" id="concertsBox" value="Concerts" checked>Concerts<br><input type="checkbox" name="interest3" id="sportsBox" value="Sports" checked>Sports<br><br><button class="btn btn-danger interests">Submit</button><br><br>')
+    $("#questionArea").html('Alright, User #2.  What rating(s) are YOU okay with?<br><br><input type="checkbox" id="rating1" value="G" checked>G<br><input type="checkbox" id="rating2" value="PG" checked>PG<br><input type="checkbox" id="rating3" value="PG13" checked>PG-13<br><input type="checkbox" id="rating4" value="R" checked>R<br><input type="checkbox" id="rating5" value="NC17" checked>NC-17<br><input type="checkbox" id="rating6" value="Unrated" checked>Unrated<br><br><button class="btn btn-danger ratings">Submit</button><br><br>')
 })
 
 
@@ -317,12 +315,14 @@ function performAPICalls() {
     if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
     console.log("Today is " + today);
     
-    var queryURLC = "http://api.jambase.com/events?zipCode=" + zipCode + "&radius=" + radius + "&startDate=" + today + "T08%3A00%3A00&page=0&api_key=rm4t3ad3hchkapjq28uv75u6"; //original API key - 3nrh4kum33dwxs4hmzh682kj
+    var queryURLC = "http://eventful.com/JSON/events?q=music&l=" + zipCode + "&within=" + radius + "&units=miles&t=Today&app_key=wB752LdX8CCvZRRx";
+
+    // var queryURLC = "http://api.jambase.com/events?zipCode=" + zipCode + "&radius=" + radius + "&startDate=" + today + "T08%3A00%3A00&page=0&api_key=rm4t3ad3hchkapjq28uv75u6"; //original API key - 3nrh4kum33dwxs4hmzh682kj
     console.log("queryURLC = " + queryURLC);
     var queryURLM = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+today+"&zip=" + zipCode + "&radius=" + radius + "&api_key=9spw93n6wf2ug5mtd6pzphcm";
 
     //onConnect API Call
-    if (onConnect) {
+    // if (onConnect) {
         $("#moviesArea").append("<br><hr class='light'>");
         $.ajax({url: queryURLM , method: "GET"}).done(function(response) {
 
@@ -468,18 +468,26 @@ function performAPICalls() {
                 }
             }
         });
-    }
+    // }
 
     //Eventful API Call
     if (eventful) { 
         // $("#concertsArea").append("<br><hr class='light'><br>Concerts functionality under construction...<br>On demo day for the group project, we displayed 10 random local concerts.");
         console.log("test");
+        // $.ajax({ url: queryURLC, method: "GET" }).done(function(response) {
+        //     console.log("test");
+        //     for (var i = 0 ; i < 10; i++) {
+        //         console.log("Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
+        //         $("#concertsArea").append("<br><br>Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
+        //     }
+        // });
         $.ajax({ url: queryURLC, method: "GET" }).done(function(response) {
             console.log("test");
-            for (var i = 0 ; i < 10; i++) {
-                console.log("Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
-                $("#concertsArea").append("<br><br>Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
-            }
+            console.log(response);
+            // for (var i = 0 ; i < 10; i++) {
+            //     console.log("Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
+            //     $("#concertsArea").append("<br><br>Concerts: " + response.Events[i].Artists[0].Name + " At: " + response.Events[i].Venue.Name + " " + response.Events[i].Venue.Address);
+            // }
         });
     }
 

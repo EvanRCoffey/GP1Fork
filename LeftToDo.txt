@@ -1,7 +1,15 @@
-4:49 PM 1/12/2017
+Concerts (jambase) API isn't working because heroku only accepts https and jambase is only http.  Not sure what to do.
 
-Get concerts functionality to work on heroku (keep getting 504 error, even after getting a 2nd api key)
+The sports (ticketmaster) API isn't working, and I don't know why.  Even when I use the API explorer, I get no results.  Not sure what to do there either.
 
-Rewrite the entire sports API call
--To start, just take the parameters you have right now
--Once that works, consider adding more parameters
+_____________________________________________________________
+
+Don't even have checkboxes for movies, sports and concerts.  Have a message on the screen saying "We originally intended to have the user select sports events and concerts, in addition to movies, but, unfortunately, we couldn't get our APIs to work correctly.  Please allow our site to help you find a movie to watch." or something like that with a button to proceed with the quiz
+
+_____________________________________________________________
+
+Couldn't get the eventful API to work either...
+
+eventful api key - wB752LdX8CCvZRRx
+
+var queryURLC = "http://eventful.com/JSON/events?q=music&l=" + zipCode + "&within=" + radius + "&units=miles&t=Today&app_key=wB752LdX8CCvZRRx";
